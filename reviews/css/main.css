@@ -1,0 +1,70 @@
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700);
+
+body {
+    font-family: 'Noto Sans', 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+#error-message {
+    display: none;
+}
+
+.fa-spin {
+    display: none;
+}
+
+.delete-review {
+	text-decoration: line-through;
+}
+
+.delete-review .readOnlyRating, .delete-review {
+	color: #F00;
+}
+
+#rating, .readOnlyRating, #averageRating{
+	color: #ffd700;
+	font-size: 1.25em;
+}
+
+#averageRating {
+	margin-bottom: 10px;
+}
+
+.bigTitle {
+	font-size: 21px;
+}
+
+.fa-times {
+	float: right;
+}
+
+.fa-thumbs-o-up, .fa-thumbs-o-down, .fa-times {
+	cursor: pointer;
+}
+
+.fa-thumbs-o-up, .fa-thumbs-o-down {
+	padding: 5px;
+	float: right;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+#new-review-form {
+	margin-bottom: 5em;
+}
+
+.reviewBox {
+	background-color: #F8F8F8;
+	box-shadow: 5px 5px 5px #777;
+	margin-bottom: 3em;
+	padding: 1em;
+}
+
+.reviewTitle {
+	font-size: 2em;
+}

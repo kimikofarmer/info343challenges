@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col-sm-6">
+		<section>
+			<ul id="type">
+				<li><a ng-click="setSort('')" href="#">All</a></li>
+				<li><a ng-click="setSort('blends')" href="#">Blends</a></li>
+				<li><a ng-click="setSort('dark roast')" href="#">Dark Roast</a></li>
+				<li><a ng-click="setSort('espresso')" href="#">Espresso</a></li>
+				<li><a ng-click="setSort('varietals')" href="#">Varietals</a></li>
+				<li><a ng-click="setSort('luxury')" href="#">Luxury</a></li>
+			</ul>
+			<ul ng-repeat="coffee in coffees | orderBy : 'name' | filter: category">
+				<li>
+					<h3>{{coffee.name}}</h3>
+				</li>
+				<li>{{coffee.description}} ({{coffee.price | currency}}/lb)</li>
+				<li>Qty: <input type="text" class="textbox" ng-model="quantity" ng-required="true"/></li>
+				<li>
+					<p>
+						Grinds:
+						<select ng-model="grindType" name="grindType" required>
+							<option value="Whole Bean">Whole Bean</option>
+							<option value="Espresso">Espresso</option>
+							<option value="French Press">French Press</option>
+							<option value="Filter">Filter</option>
+						</select>
+					</p>
+				</li>
+				<li><button type="submit" class="btn btn-primary" ng-click="addToCart(coffee.name, coffee.price, quantity, grindType)">Add To Cart</button></li>
+			</ul>
+		</section>
+	</div>
+	<div class="col-sm-6">
+		<h2>Your Cart</h2>
+		<table class="table">
+			<thread>
+				<tr>
+					<th></th>
+					<th>Lb</th>
+					<th>Name</th>
+					<th>Grind</th>
+					<th>Price</th>
+					<th>Ext Price</th>
+				</tr>
+			</thread>
+			<tbody>
+				<tr ng-repeat="c in cart">
+					<td><button class="btn btn-default" ng-click="remove(item)"><i class="fa fa-minus"></i></button></td>
+					<td>{{c.quantity}}</td>
+					<td>{{c.name}}</td>
+					<td>{{c.grind}}</td>
+					<td>{{c.price | currency}}</td>
+					<td>{{c.extPrice | currency}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>Total Price: {{totalPrice() | currency}}</p>
+		<button type="submit" class="btn btn-primary" ui-sref="checkout">Checkout</button>
+	</div>
+</div>

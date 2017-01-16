@@ -1,0 +1,143 @@
+<h1>Checkout</h1>
+
+<div id="order" class="container">
+    <form name="orderForm" novalidate>
+        <h2>Shipping Address</h2>
+        <div class="form-group">
+            <label for="sname">Name:</label>
+            <input type="text" class="form-control" id="sname" name="sname" ng-model="shipping.name" required />
+            <p class="validation-error"
+               ng-if="orderForm.sname.$error.required">Name is required.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="saddress1">Address Line 1:</label>
+            <input type="text" class="form-control" id="saddress1" name="saddress1" ng-model="shipping.saddress1" required />
+            <p class="validation-error"
+               ng-if="orderForm.saddress1.$error.required">Address is required</p>
+        </div>
+
+        <div class="form-group">
+            <label for="saddress2">Address Line 2:</label>
+            <input type="text" class="form-control" id="saddress2" name="saddress2" ng-model="shipping.saddress2"/>
+        </div>
+
+        <div class="form-group">
+            <label for="scity">City:</label>
+            <input type="text" class="form-control" id="scity" name="scity" ng-model="shipping.scity" required />
+            <p class="validation-error"
+               ng-if="orderForm.scity.$error.required">City is required.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="sstate">State:</label>
+            <input type="text" class="form-control" id="sstate" name="sstate" ng-model="shipping.sstate" required />
+            <p class="validation-error"
+               ng-if="orderForm.sstate.$error.required">State is required.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="szip">Zip Code:</label>
+            <input type="text" class="form-control" id="szip" name="szip" ng-model="shipping.szip"
+                   pattern="\d{5}" required />
+            <p class="validation-error"
+               ng-if="orderForm.szip.$error.required">Zip code is required</p>
+        </div>
+
+        <h2>Billing Address</h2>
+        <input type="checkbox" id="same" name="same" ng-model="same">
+        <label id="sameLabel" for="same">
+            Use same as shipping address.
+        </label>
+        <div class="form-group">
+            <label for="bname">Name:</label>
+            <input type="text" class="form-control" id="bname" name="bname" ng-model="billing.bname"
+                   ng-disabled="same" required />
+            <p class="validation-error"
+               ng-if="orderForm.bname.$error.required">Name is required</p>
+        </div>
+
+        <div class="form-group">
+            <label for="baddress1">Address Line 1:</label>
+            <input type="text" class="form-control" id="baddress1" name="baddress1"
+                   ng-model="billing.baddress1" ng-disabled="same" required />
+            <p class="validation-error"
+               ng-if="orderForm.baddress1.$error.required">Address is required.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="baddress2">Address Line 2:</label>
+            <input type="text" class="form-control" id="baddress2" name="baddress2"
+                   ng-disabled="same" ng-model="billing.saddress2"/>
+        </div>
+
+        <div class="form-group">
+            <label for="bcity">City:</label>
+            <input type="text" class="form-control" id="bcity" name="bcity"
+                   ng-disabled="same" ng-model="billing.bcity" required />
+            <p class="validation-error"
+               ng-if="orderForm.bcity.$error.required">City is required.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="bstate">State:</label>
+            <input type="text" class="form-control" id="bstate" name="bstate"
+                   ng-disabled="same" ng-model="billing.bstate" required />
+            <p class="validation-error"
+               ng-if="orderForm.bstate.$error.required">State is required.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="bzip">Zip Code:</label>
+            <input type="text" class="form-control" id="bzip" name="bzip" ng-model="billing.bzip"
+                   pattern="\d{5}" ng-disabled="same" required />
+            <p class="validation-error"
+               ng-if="orderForm.bzip.$error.required">Zip code is required.</p>
+        </div><br>
+
+        <h2>Payment Information</h2>
+        <div class="form-group">
+            <label for="cname">Name on Card:</label>
+            <input type="text" class="form-control" id="cname" name="cname" ng-model="card.cname" required />
+            <p class="validation-error"
+               ng-if="orderForm.cardName.$error.required">Name on card is required.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="cnumber">Card Number:</label>
+            <input type="text" class="form-control" id="cnumber" name="cnumber" ng-model="card.cnumber" required luhn-check />
+            <p class="validation-error"
+               ng-if="orderForm.cnumber.$error.luhnCheck">Card number is not valid.</p>
+            <p class="validation-error"
+               ng-if="orderForm.cnumber.$error.required">Card number is required.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="ccode">Card CVV:</label>
+            <input type="number" id="ccode" name="ccode" ng-model="card.ccode" max="3" required />
+            <p class="validation-error"
+               ng-if="orderForm.ccode.$error.required">CVV is required</p>
+            <p class="validation-error"
+               ng-if="orderForm.ccode.$error.max">CVV is too long.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="cmonth">Card Expiration Month:</label>
+            <input type="number" id="cmonth" name="cmonth" ng-model="card.cmonth"
+                   min="1" max="12" step="1" required />
+            <p class="validation-error"
+               ng-if="orderForm.cmonth.$error.required">Card expiration month is required</p>
+        </div>
+
+        <div class="form-group">
+            <label for="cyear">Card Expiration Year:</label>
+            <input type="number" id="cyear" name="cyear" ng-model="card.cyear" step ="1" cc-year required />
+            <p class="validation-error"
+               ng-if="orderForm.cyear.$error.ccYear">Card expiration year not valid.</p>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" ng-disabled="orderForm.$invalid" ng-click="submit()" ui-sref="confirm">Order</button>
+        </div>
+    </form>
+</div>
